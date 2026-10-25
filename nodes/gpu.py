@@ -120,6 +120,18 @@ def release(pipe):
         torch.cuda.empty_cache()
 
 
+def is_cpu_oom(exc):
+    """컴퓨터 메모리(RAM) 부족 — torch CPU 할당 실패(DefaultCPUAllocator)나 파이썬 MemoryError 가 아닌 RuntimeError 꼴."""
+    text = str(exc)
+    return "DefaultCPUAllocator" in text or "not enough memory" in text
+
+
+RAM_MESSAGE = (
+    "컴퓨터 메모리(RAM)가 모자라 모델을 옮기지 못했습니다. 메모리를 많이 쓰는 다른 프로그램을 닫고 다시 실행해 주세요."
+    " 모델 파일을 모두 메모리에 올리므로 RAM 이 모델 크기보다 넉넉해야 합니다(README 「필요한 메모리」)."
+)
+
+
 def peak_report():
     """이번 실행의 VRAM 최대(할당 · 예약, MiB) — 로그 한 줄용."""
     import torch
