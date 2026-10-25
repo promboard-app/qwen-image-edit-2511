@@ -50,6 +50,7 @@ PromBoard 커뮤니티 플러그인입니다. 캔버스에 **Qwen-Image-Edit-251
 
 ## 바뀐 것
 
+- 1.0.2: 부품을 올리는 코드(`nodes/gpu.py`)를 다른 이미지 플러그인과 같은 판으로 맞췄습니다(쓸 때만 올리는 부품 뒤에 조각씩 올리는 부품이 오면 앞 부품을 먼저 내림). 이 플러그인은 트랜스포머를 조각씩 올리지 않아 동작은 1.0.1 과 같습니다.
 - 1.0.1: 경량화 설정(원본 bf16 · GGUF Q8 · GGUF Q4)과 라벨(기능 · 검증 안 됨)을 더했습니다. 필요한 그래픽카드 메모리가 48GB → 20GB(GGUF Q4)로 내려갔습니다. 앱 1.0.3 이상.
 - 1.0.0: 처음 공개(원본 bf16 만).
 
@@ -67,7 +68,7 @@ A PromBoard community plugin that adds one node, **Qwen-Image-Edit-2511 편집**
 - Settings: steps (official example 40), prompt adherence (true_cfg_scale, official example 4; 1 disables the negative prompt and runs twice as fast), negative prompt (empty = a single space, as in the official example), seed (-1 = random).
 - Memory: everything goes on the GPU when it fits; otherwise each part is moved on only while it runs, and the encoder is streamed block by block if needed. If the transformer alone does not fit it stops with an error. 48 GB+ system RAM for Q4, 64 GB+ for bf16. NVIDIA CUDA only; CPU is blocked; Linux and macOS lock files exist but are untested.
 - License: model Apache-2.0 (official and unsloth GGUF); plugin code Apache-2.0.
-- Changes: 1.0.1 adds the quantization setting and labels (app 1.0.3+), lowering the VRAM requirement from 48 GB to 20 GB; 1.0.0 was bf16 only.
+- Changes: 1.0.2 syncs `nodes/gpu.py` with the other image plugins (a part moved on per use is now moved off when a block-streamed part starts); this plugin never streams the transformer, so it behaves as 1.0.1; 1.0.1 adds the quantization setting and labels (app 1.0.3+), lowering the VRAM requirement from 48 GB to 20 GB; 1.0.0 was bf16 only.
 
 ## License
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "promboard.qwen-image-edit-2511",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Qwen-Image-Edit-2511 — 말로 이미지 고치기",
   "description": "Qwen 의 Qwen-Image-Edit-2511(20B)로 이미지(1~3장)를 말로 고친다 — 배경 바꾸기 · 물건 넣고 빼기 · 여러 장을 한 장면으로 섞기 · 인물 · 제품 모습 유지. 경량화 설정으로 트랜스포머 정밀도(원본 bf16 40.9GB · unsloth GGUF Q8 21.8GB · Q4 13.2GB)를 고르고 고른 판만 받는다(공통 파일 16.8GB). 가장 가벼운 Q4 도 그래픽카드 메모리 20GB 이상. Apache-2.0. PromBoard 팀은 만들기만 하고 실제로 돌려 보지 않았다(검증 안 됨).",
   "author": "PromBoard",
